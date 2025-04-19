@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 import cors from "cors";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import nodemailer from "nodemailer";
 import sgMail from "@sendgrid/mail";
 import * as tf from "@tensorflow/tfjs-node";
 
@@ -145,6 +144,7 @@ app.post("/generate-otp", async (req, res) => {
     };
     await sgMail.send(msg);
     console.log("OTP sent to:", email);
+    console.log("OTP is:", otp);
     res.json({ message: "OTP sent successfully" });
   } catch (error) {
     console.error("OTP generation error:", error);

@@ -110,12 +110,12 @@ function LoginMultiStep() {
     if (step === 3 && !modelsLoaded) {
       const loadModels = async () => {
         try {
-          console.log("[STEP 3] Loading face-api models from /models...");
+          console.log("[STEP 3] Loading face models from /models...");
           await faceapi.nets.ssdMobilenetv1.loadFromUri("/models");
           await faceapi.nets.faceLandmark68Net.loadFromUri("/models");
           await faceapi.nets.faceRecognitionNet.loadFromUri("/models");
           setModelsLoaded(true);
-          console.log("[STEP 3] Face-api models loaded successfully.");
+          console.log("[STEP 3] Face models loaded successfully.");
         } catch (err) {
           console.error("[STEP 3] Error loading models:", err);
           setError("Error loading face recognition models.");
