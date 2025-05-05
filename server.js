@@ -47,9 +47,8 @@ const UserSchema = new mongoose.Schema({
 });
 const User = mongoose.model("User", UserSchema);
 
-// ------------------------
 // Route: SIGNUP
-// ------------------------
+
 app.post("/signup", async (req, res) => {
   const { fullName, email, password, faceImage } = req.body;
   if (!fullName || !email || !password || !faceImage) {
@@ -72,9 +71,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-// ------------------------
 // Route: LOGIN
-// ------------------------
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -96,9 +93,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// ------------------------
 // Route: LOGINMULTISTEP (alias for /login)
-// ------------------------
 app.post("/loginmultistep", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -123,9 +118,7 @@ app.post("/loginmultistep", async (req, res) => {
 // Configure SendGrid API
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// ------------------------
 // Route: OTP GENERATION
-// ------------------------
 app.post("/generate-otp", async (req, res) => {
   const { email } = req.body;
   try {
@@ -155,9 +148,7 @@ app.post("/generate-otp", async (req, res) => {
 // In-memory OTP Store
 const otpStore = {};
 
-// ------------------------
 // Route: OTP VERIFICATION
-// ------------------------
 app.post("/verify-otp", async (req, res) => {
   const { email, otp } = req.body;
   try {
@@ -185,9 +176,7 @@ app.post("/verify-otp", async (req, res) => {
   }
 });
 
-// ------------------------
 // FACE-BASED LOGIN WITH ANTISPOOFING
-// ------------------------
 let faceAuthModel;
 const MODEL_PATH = path.join(__dirname, "public", "models", "antispoof_model", "model.json");
 console.log("Loading face authentication model from:", MODEL_PATH);
@@ -220,9 +209,7 @@ async function processImageForAntispoof(imageBuffer) {
   }
 }
 
-// ------------------------
 // Route: FACE-BASED LOGIN (with antispoofing)
-// ------------------------
 app.post("/face-login", async (req, res) => {
   console.log("Face login route hit for:", req.body.email);
   const { email, faceImage } = req.body;
@@ -255,14 +242,8 @@ app.post("/face-login", async (req, res) => {
     const probabilities = expScores.map(expScore => expScore / sumExp);
     console.log("Softmax probabilities:", probabilities);
     
-    // Determine predicted class (0 = live, 1 = spoof)
-    const predictedClass = probabilities.indexOf(Math.max(...probabilities));
-    console.log("Predicted class (0 = live, 1 = spoof):", predictedClass);
-    
-    // Adjust threshold: if spoof probability (index 1) is higher than threshold, reject.
-    // Experiment with the threshold value (e.g., try 0.70, 0.75, or 0.80)
     // option1
-    const spoofThreshold = 0.6;
+    const spoofThreshold = 0.75;
     if (probabilities[1] > spoofThreshold) {
       console.log("Spoof detected with probability:", probabilities[1]);
       return res.status(400).json({ error: "Spoof detected. Live face required for login." });
@@ -287,8 +268,5 @@ app.post("/face-login", async (req, res) => {
   }
 });
 
-// ------------------------
-// START SERVER
-// ------------------------
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

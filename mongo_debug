@@ -1,0 +1,4 @@
+open .zshrc
+source .zshrc
+mongod
+sudo mongod --dbpath=/Users/harshwardhan/data/db

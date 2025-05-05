@@ -1,0 +1,116 @@
+[
+    {
+      "paths": [
+        "resnet18_model-shard1",
+        "resnet18_model-shard2"
+      ],
+      "weights": [
+        {
+          "name": "conv1/weight",
+          "shape": [64, 3, 7, 7],
+          "dtype": "float32"
+        },
+        {
+          "name": "bn1/weight",
+          "shape": [64],
+          "dtype": "float32"
+        },
+        {
+          "name": "bn1/bias",
+          "shape": [64],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer1/0/conv1/weight",
+          "shape": [64, 64, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer1/0/conv2/weight",
+          "shape": [64, 64, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer1/1/conv1/weight",
+          "shape": [64, 64, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer1/1/conv2/weight",
+          "shape": [64, 64, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer2/0/conv1/weight",
+          "shape": [128, 64, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer2/0/conv2/weight",
+          "shape": [128, 128, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer2/1/conv1/weight",
+          "shape": [128, 128, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer2/1/conv2/weight",
+          "shape": [128, 128, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer3/0/conv1/weight",
+          "shape": [256, 128, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer3/0/conv2/weight",
+          "shape": [256, 256, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer3/1/conv1/weight",
+          "shape": [256, 256, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer3/1/conv2/weight",
+          "shape": [256, 256, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer4/0/conv1/weight",
+          "shape": [512, 256, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer4/0/conv2/weight",
+          "shape": [512, 512, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer4/1/conv1/weight",
+          "shape": [512, 512, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "layer4/1/conv2/weight",
+          "shape": [512, 512, 3, 3],
+          "dtype": "float32"
+        },
+        {
+          "name": "fc/weight",
+          "shape": [1000, 512],
+          "dtype": "float32"
+        },
+        {
+          "name": "fc/bias",
+          "shape": [1000],
+          "dtype": "float32"
+        }
+      ]
+    }
+  ]
+  
